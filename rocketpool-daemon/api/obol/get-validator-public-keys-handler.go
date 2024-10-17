@@ -63,9 +63,6 @@ func (c *GetValidatorPublicKeysContext) Initialize() (types.ResponseStatus, erro
 	return types.ResponseStatus_Success, nil
 }
 
-func (c *GetValidatorPublicKeysContext) GetState(mc *batch.MultiCaller) {
-}
-
 func (c *GetValidatorPublicKeysContext) PrepareData(data *api.GetValidatorPublicKeysData, opts *bind.TransactOpts) (types.ResponseStatus, error) {
     cmd := exec.Command(
         "docker", "exec", "-it", "charon-distributed-validator-node-charon-1", 

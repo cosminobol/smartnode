@@ -48,7 +48,7 @@ type DvExitBroadcastContext struct {
 	rp      *rocketpool.RocketPool
 
 	endpoint string
-	validatorPublicKeys string
+	validatorPublicKey string
 	publishTimeout string
 }
 
@@ -65,16 +65,13 @@ func (c *DvExitBroadcastContext) Initialize() (types.ResponseStatus, error) {
 	return types.ResponseStatus_Success, nil
 }
 
-func (c *DvExitBroadcastContext) GetState(mc *batch.MultiCaller) {
-}
-
 func (c *DvExitBroadcastContext) PrepareData(data *api.DvExitBroadcastData, opts *bind.TransactOpts) (types.ResponseStatus, error) {
 	cmd := exec.Command(
 		"docker", "exec", "-it", "charon-distributed-validator-node-charon-1", 
 		"/bin/sh", "-c", 
 		fmt.Sprintf(`charon exit sign --beacon-node-endpoints="%s" --validator-public-key="%s" --publish-timeout="%s"`, 
 			c.endpoint, 
-			c.validatorPublicKeys, 
+			c.validatorPublicKey, 
 			c.publishTimeout,
 		),
 	)

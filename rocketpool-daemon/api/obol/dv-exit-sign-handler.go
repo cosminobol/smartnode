@@ -66,9 +66,6 @@ func (c *DvExitSignContext) Initialize() (types.ResponseStatus, error) {
 	return types.ResponseStatus_Success, nil
 }
 
-func (c *DvExitSignContext) GetState(mc *batch.MultiCaller) {
-}
-
 func (c *DvExitSignContext) PrepareData(data *api.DvExitSignData, opts *bind.TransactOpts) (types.ResponseStatus, error) {
 	cmd := exec.Command(
 		"docker", "exec", "-it", "charon-distributed-validator-node-charon-1",

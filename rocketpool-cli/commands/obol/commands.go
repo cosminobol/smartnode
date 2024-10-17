@@ -16,7 +16,7 @@ func RegisterCommands(app *cli.App, name string, aliases []string) {
 		Subcommands: []*cli.Command{
 			{
 				Name:    "health",
-				Aliases: []string{"s"},
+				Aliases: []string{"h"},
 				Usage:   "Get Charon service health",
 				Action: func(c *cli.Context) error {
 					// Validate args
@@ -40,7 +40,7 @@ func RegisterCommands(app *cli.App, name string, aliases []string) {
 			},
 			{
 				Name:    "create-enr",
-				Aliases: []string{"s"},
+				Aliases: []string{"n"},
 				Usage:   "Create ENR for a Charon client",
 				Action: func(c *cli.Context) error {
 					// Validate args
@@ -52,7 +52,7 @@ func RegisterCommands(app *cli.App, name string, aliases []string) {
 			},
 			{
 				Name:    "charon-dkg",
-				Aliases: []string{"s"},
+				Aliases: []string{"d"},
 				Usage:   "Run the Distributed Key Generation (DKG) ceremony",
 				Action: func(c *cli.Context) error {
 					// Validate args
@@ -64,8 +64,8 @@ func RegisterCommands(app *cli.App, name string, aliases []string) {
 			},
 			{
 				Name:    "get-validator-public-keys",
-				Aliases: []string{"s"},
-				Usage:   "Run the Distributed Key Generation (DKG) ceremony",
+				Aliases: []string{"k"},
+				Usage:   "Retrieves validator public keys",
 				Action: func(c *cli.Context) error {
 					// Validate args
 					utils.ValidateArgCount(c, 0)
@@ -76,8 +76,8 @@ func RegisterCommands(app *cli.App, name string, aliases []string) {
 			},
 			{
 				Name:    "dv-exit-sign",
-				Aliases: []string{"s"},
-				Usage:   "Exit a DV",
+				Aliases: []string{"e"},
+				Usage:   "Sign a partial DV exit",
 				Action: func(c *cli.Context) error {
 					// Validate args
 					utils.ValidateArgCount(c, 0)
@@ -88,7 +88,7 @@ func RegisterCommands(app *cli.App, name string, aliases []string) {
 			},
 			{
 				Name:    "dv-exit-broadcast",
-				Aliases: []string{"s"},
+				Aliases: []string{"b"},
 				Usage:   "Publish a DV exit",
 				Action: func(c *cli.Context) error {
 					// Validate args

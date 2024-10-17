@@ -21,7 +21,7 @@ type DvExitSignData struct {
 
 type DvExitBroadcastData struct {
 	endpoint     string `json:"endpoint"`
-	validatorPublicKeys     string `json:"validatorPublicKeys"`
+	validatorPublicKey     string `json:"validatorPublicKey"`
 	publishTimeout     string `json:"publishTimeout"`
 }
 

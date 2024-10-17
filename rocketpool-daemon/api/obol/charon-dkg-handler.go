@@ -63,9 +63,6 @@ func (c *CharonDkgContext) Initialize() (types.ResponseStatus, error) {
 	return types.ResponseStatus_Success, nil
 }
 
-func (c *CharonDkgContext) GetState(mc *batch.MultiCaller) {
-}
-
 func (c *CharonDkgContext) PrepareData(data *api.CharonDkgData, opts *bind.TransactOpts) (types.ResponseStatus, error) {
     cmd := exec.Command(
         "docker", "run", "--rm",

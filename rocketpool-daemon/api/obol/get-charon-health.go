@@ -63,9 +63,6 @@ func (c *GetCharonHealthContext) Initialize() (types.ResponseStatus, error) {
 	return types.ResponseStatus_Success, nil
 }
 
-func (c *GetCharonHealthContext) GetState(mc *batch.MultiCaller) {
-}
-
 func (c *GetCharonHealthContext) PrepareData(data *api.GetCharonHealthData, opts *bind.TransactOpts) (types.ResponseStatus, error) {
     // The URL for the health check
     url := fmt.Sprintf(`http://%s/health`, c.endpoint)
@@ -77,8 +74,8 @@ func (c *GetCharonHealthContext) PrepareData(data *api.GetCharonHealthData, opts
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-        log.Fatalf("Request failed with status code: %d", resp.StatusCode)
-    }
+		return types.ResponseStatus_Error, fmt.Errorf("Request failed with status code: %s", resp.StatusCode)
+    } 
 
 	body, err := io.ReadAll(resp.Body)
     if err != nil {

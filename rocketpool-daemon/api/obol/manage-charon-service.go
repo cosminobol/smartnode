@@ -35,7 +35,7 @@ func (f *ManageCharonServiceContextFactory) Create(args url.Values) (*ManageChar
 
 func (f *ManageCharonServiceContextFactory) RegisterRoute(router *mux.Router) {
 	server.RegisterSingleStageRoute[*ManageCharonServiceContext, api.ManageCharonServiceData](
-		router, "obol/create-enr", f, f.handler.logger.Logger, f.handler.serviceProvider.ServiceProvider,
+		router, "obol/manage-charon-service", f, f.handler.logger.Logger, f.handler.serviceProvider.ServiceProvider,
 	)
 }
 
@@ -66,20 +66,17 @@ func (c *ManageCharonServiceContext) Initialize() (types.ResponseStatus, error) 
 	return types.ResponseStatus_Success, nil
 }
 
-func (c *ManageCharonServiceContext) GetState(mc *batch.MultiCaller) {
-}
-
 func (c *ManageCharonServiceContext) PrepareData(data *api.ManageCharonServiceData, opts *bind.TransactOpts) (types.ResponseStatus, error) {
 	var cmd *exec.Cmd
 
 	// Choose the appropriate command based on the action
 	switch c.action {
 		case "start":
-			cmd = exec.Command("systemctl", "start", c.serviceName)
+			cmd = exec.Command("docker", "start", c.serviceName)
 		case "stop":
-			cmd = exec.Command("systemctl", "stop", c.serviceName)
+			cmd = exec.Command("docker", "stop", c.serviceName)
 		case "restart":
-			cmd = exec.Command("systemctl", "restart", c.serviceName)
+			cmd = exec.Command("docker", "restart", c.serviceName)
 		default:
 			return types.ResponseStatus_Error, fmt.Errorf("invalid action: %s. Use start, stop, or restart", c.action)
 	}

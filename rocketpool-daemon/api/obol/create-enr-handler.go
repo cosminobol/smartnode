@@ -63,9 +63,6 @@ func (c *CreateENRContext) Initialize() (types.ResponseStatus, error) {
 	return types.ResponseStatus_Success, nil
 }
 
-func (c *CreateENRContext) GetState(mc *batch.MultiCaller) {
-}
-
 func (c *CreateENRContext) PrepareData(data *api.CreateENRData, opts *bind.TransactOpts) (types.ResponseStatus, error) {
     cmd := exec.Command(
         "docker", "run", "--rm",
